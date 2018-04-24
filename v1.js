@@ -91,10 +91,12 @@ class Stateless {
       throw new Error("Event must not be null and have an ID!");
     }
   }
+
+  createListener(id, callback) {
+    return new EventListener(id, callback);
+  }
 }
 
-var initializer = function() {
-  return new Stateless();
-};
+var initializer = new Stateless();
 
 module.exports = initializer;

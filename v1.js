@@ -59,7 +59,10 @@ class Stateless {
 
   listenTo(eventName, listener, callback){
     if(eventListeners.has(eventName)){
-        const event = eventListeners.get(eventName);
+        const listeners = eventListeners.get(eventName);
+        if(!listeners.hasListener(listener.id)){
+            listeners.addListener(listener);
+        }
     }
   }
 

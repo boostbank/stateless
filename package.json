@@ -4,7 +4,7 @@
   "description": "Stateless Event System for JS",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --env=jsdom --coverage"
   },
   "repository": {
     "type": "git",
@@ -21,6 +21,8 @@
   },
   "homepage": "https://github.com/boostbank/stateless#readme",
   "dependencies": {
-    "hashmap": "^2.3.0"
+    "cross-env": "^5.1.4",
+    "hashmap": "^2.3.0",
+    "jest": "^22.4.3"
   }
 }

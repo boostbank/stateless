@@ -1,0 +1,26 @@
+{
+  "name": "stateless",
+  "version": "0.1.0",
+  "description": "Stateless Event System for JS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/boostbank/stateless.git"
+  },
+  "keywords": [
+    "boostbank",
+    "stateless"
+  ],
+  "author": "boostbank",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/boostbank/stateless/issues"
+  },
+  "homepage": "https://github.com/boostbank/stateless#readme",
+  "dependencies": {
+    "hashmap": "^2.3.0"
+  }
+}

@@ -4,7 +4,8 @@
   "description": "Stateless Event System for JS",
   "main": "index.js",
   "scripts": {
-    "test": "jest --env=jsdom --coverage"
+    "test": "jest --env=jsdom --coverage",
+    "test:no-coverage": "jest --env=jsdom"
   },
   "repository": {
     "type": "git",

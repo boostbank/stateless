@@ -73,11 +73,22 @@ class Stateless {
     if (eventListeners.has(eventName)) {
       const listeners = eventListeners.get(eventName);
       if (listeners.hasListener(listenerId)) {
-        listeners.remove(listener);
+        listeners.removeListener(listenerId);
       }
     }
     if (callback) {
       callback();
+    }
+  }
+
+  throwEvent(event) {
+    if (event && event.id) {
+      if (eventListeners.has(event.id)) {
+        const listeners = eventListeners.get(event.id);
+        listeners.notify(event);
+      }
+    } else {
+      throw new Error("Event must not be null and have an ID!");
     }
   }
 }

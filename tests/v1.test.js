@@ -81,4 +81,48 @@ describe("Stateless v1 Tests", () => {
       expect(Stateless.containsEvent("Test Event 2")).toBe(false);
     });
   });
+
+  it("throws an event", () => {
+    let throwEvent = undefined;
+    Stateless.addEvent("Test Event");
+    const listener = {
+      id: "123",
+      eventCallback: event => {
+        throwEvent = event;
+        expect(event).not.toBe(undefined);
+        expect(event.id).toBe("Test Event");
+        expect(event.payload).toBe("data");
+      }
+    };
+    Stateless.subscribe("Test Event", listener);
+    const event = {
+      id: "Test Event",
+      payload: "data"
+    };
+    Stateless.throwEvent(event);
+    expect(throwEvent).not.toBe(undefined);
+  });
+  it("Doesnt throw when unsubscribing", () => {
+    let throwEvent = undefined;
+    Stateless.addEvent("Test Event");
+    const listener = {
+      id: "123",
+      eventCallback: event => {
+        throwEvent = event;
+        expect(event).not.toBe(undefined);
+        expect(event.id).toBe("Test Event");
+        expect(event.payload).toBe("data");
+      }
+    };
+    Stateless.subscribe("Test Event", listener);
+    const event = {
+      id: "Test Event",
+      payload: "data"
+    };
+    Stateless.throwEvent(event);
+    expect(throwEvent).not.toBe(undefined);
+    throwEvent = undefined;
+    Stateless.unsubscribe("Test Event", "123");
+    expect(throwEvent).toBe(undefined);
+  });
 });

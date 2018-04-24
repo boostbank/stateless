@@ -2,8 +2,8 @@
 
 const HashMap = require("hashmap");
 const eventListeners = new HashMap();
-const EventListener = require('./lib/EventListener');
-const Listeners = require('./lib/Listeners');
+const EventListener = require("./lib/EventListener");
+const Listeners = require("./lib/Listeners");
 
 class Stateless {
   /**
@@ -57,15 +57,29 @@ class Stateless {
     }
   }
 
-  listenTo(eventName, listener, callback){
-    if(eventListeners.has(eventName)){
-        const listeners = eventListeners.get(eventName);
-        if(!listeners.hasListener(listener.id)){
-            listeners.addListener(listener);
-        }
+  subscribe(eventName, listener, callback) {
+    if (eventListeners.has(eventName)) {
+      const listeners = eventListeners.get(eventName);
+      if (!listeners.hasListener(listener.id)) {
+        listeners.addListener(listener);
+      }
+    }
+    if (callback) {
+      callback();
     }
   }
 
+  unsubscribe(eventName, listenerId, callback) {
+    if (eventListeners.has(eventName)) {
+      const listeners = eventListeners.get(eventName);
+      if (listeners.hasListener(listenerId)) {
+        listeners.remove(listener);
+      }
+    }
+    if (callback) {
+      callback();
+    }
+  }
 }
 
 var initializer = function() {

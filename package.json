@@ -1,5 +1,5 @@
 {
-  "name": "stateless",
+  "name": "@boostbank/stateless",
   "version": "0.1.0",
   "description": "Stateless Event System for JS",
   "main": "index.js",

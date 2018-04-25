@@ -1,0 +1,9 @@
+v1.js
+coverage/
+node_modules/
+library
+.gitignore
+package-lock.json
+src/
+.babelrc
+tests/

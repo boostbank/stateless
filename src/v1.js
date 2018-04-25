@@ -2,8 +2,8 @@
 
 const HashMap = require("hashmap");
 const eventListeners = new HashMap();
-const EventListener = require("./lib/EventListener");
-const Listeners = require("./lib/Listeners");
+const EventListener = require("./../library/EventListener");
+const Listeners = require("./../library/Listeners");
 let instance = undefined;
 
 const getInstance = () => {

@@ -1,4 +1,4 @@
-const Listeners = require("./../../library/Listeners");
+const Listeners = require("./../../src/library/Listeners");
 
 describe("Listeners Tests", () => {
   it("Creates an Listeners Class.", () => {

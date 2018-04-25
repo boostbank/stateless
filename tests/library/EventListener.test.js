@@ -1,4 +1,4 @@
-var EventListener = require("./../../library/EventListener");
+var EventListener = require("./../../src/library/EventListener");
 
 describe("EventListener Tests", () => {
   it("Creates an Event Listener.", () => {

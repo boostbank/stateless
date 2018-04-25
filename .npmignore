@@ -1,9 +1,9 @@
 v1.js
-coverage/
-node_modules/
+coverage
+node_modules
 library
 .gitignore
 package-lock.json
-src/
+src
 .babelrc
-tests/
+tests

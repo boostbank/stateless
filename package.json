@@ -1,14 +1,17 @@
 {
   "name": "@boostbank/stateless",
-  "version": "0.1.35",
+  "version": "0.1.38",
   "description": "Stateless Event System for JS",
-  "main": "v1.js",
+  "main": "lib/v1.js",
   "scripts": {
     "test": "jest --env=jsdom --coverage",
     "test:no-coverage": "jest --env=jsdom",
     "build": "babel src/ -d lib",
     "prepublish": "npm run build"
   },
+  "files": [
+    "lib/*"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/boostbank/stateless.git"

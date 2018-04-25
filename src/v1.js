@@ -89,7 +89,7 @@ class Stateless {
     }
   }
 
-  throwEvent(event) {
+  dispatch(event) {
     if (event && event.id) {
       if (eventListeners.has(event.id)) {
         const listeners = eventListeners.get(event.id);

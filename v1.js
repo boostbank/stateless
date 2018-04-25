@@ -4,6 +4,14 @@ const HashMap = require("hashmap");
 const eventListeners = new HashMap();
 const EventListener = require("./lib/EventListener");
 const Listeners = require("./lib/Listeners");
+let instance = undefined;
+
+const getInstance = () => {
+  if (instance === undefined) {
+    instance = new Stateless();
+  }
+  return instance;
+}
 
 class Stateless {
   /**
@@ -97,6 +105,6 @@ class Stateless {
   }
 }
 
-var initializer = new Stateless();
+var initializer = getInstance();
 
 module.exports = initializer;

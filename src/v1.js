@@ -4,6 +4,8 @@ const HashMap = require("hashmap");
 const eventListeners = new HashMap();
 const EventListener = require("./library/EventListener");
 const Listeners = require("./library/Listeners");
+const DispatchQueue = require("./library/DispatchQueue");
+
 let instance = undefined;
 
 const getInstance = () => {
@@ -11,7 +13,7 @@ const getInstance = () => {
     instance = new Stateless();
   }
   return instance;
-}
+};
 
 class Stateless {
   /**
@@ -19,9 +21,17 @@ class Stateless {
    * @param {string} eventName The event name.
    * @param {function} callback The callback function if async.
    */
+
+  constructor() {
+    this.dispatchQueue = new DispatchQueue();
+  }
+
   addEvent(eventName, callback) {
     if (!eventListeners.has(eventName)) {
       eventListeners.set(eventName, new Listeners());
+      if (!this.dispatchQueue.isEmpty()) {
+        this.dispatchQueue.runQueue();
+      }
     }
     if (callback) {
       callback();
@@ -29,11 +39,11 @@ class Stateless {
   }
 
   /**
-   * @function containsEvent Returns if the system contains the event by name.
+   * @function hasEvent Returns if the system contains the event by name.
    * @param {string} eventName The event name.
    * @param {function} callback The callback function if async.
    */
-  containsEvent(eventName, callback) {
+  hasEvent(eventName, callback) {
     if (callback) {
       callback(eventListeners.has(eventName));
     }
@@ -94,6 +104,8 @@ class Stateless {
       if (eventListeners.has(event.id)) {
         const listeners = eventListeners.get(event.id);
         listeners.notify(event);
+      } else {
+        this.dispatchQueue.enqueue(event);
       }
     } else {
       throw new Error("Event must not be null and have an ID!");
@@ -102,6 +114,10 @@ class Stateless {
 
   createListener(id, callback) {
     return new EventListener(id, callback);
+  }
+
+  hasQueuedDispatches() {
+    return !this.dispatchQueue.isEmpty();
   }
 }
 

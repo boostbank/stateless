@@ -15,6 +15,36 @@ const getInstance = () => {
   return instance;
 };
 
+const runDispatchQueue = dispatchQueue => {
+  for (let i = 0; i < dispatchQueue.queue.length; i++) {
+    const event = dispatchQueue.queue[i];
+    if (getInstance().hasEvent(event.id)) {
+      getInstance().dispatch(event);
+      dispatchQueue.queue.splice(i, 1);
+      if (i > 0) {
+        i--;
+      }
+    }
+  }
+};
+
+const runListenerQueue = listenerQueue => {
+  for (let i = 0; i < listenerQueue.queue.length; i++) {
+    const listener = listenerQueue.queue[i];
+    if (getInstance().hasEvent(listener.eventName)) {
+      getInstance().listen(
+        listener.eventName,
+        listener.id,
+        listener.eventCallback
+      );
+      listenerQueue.queue.splice(i, 1);
+      if (i > 0) {
+        i--;
+      }
+    }
+  }
+};
+
 class Stateless {
   /**
    * @function addEvent Adds an event to be listened to.
@@ -31,7 +61,8 @@ class Stateless {
     if (!eventListeners.has(eventName)) {
       eventListeners.set(eventName, new Listeners());
       if (!this.dispatchQueue.isEmpty()) {
-        this.runQueue();
+        runListenerQueue(this.listenerQueue);
+        runDispatchQueue(this.dispatchQueue);
       }
     }
     if (callback) {
@@ -87,10 +118,12 @@ class Stateless {
     if (eventListeners.has(eventName)) {
       const listeners = eventListeners.get(eventName);
       if (!listeners.hasListener(uid)) {
-        listeners.addListener(new EventListener(uid, eventCallback));
+        listeners.addListener(new EventListener(uid, eventName, eventCallback));
       }
     } else {
-      this.listenerQueue.enqueue(new EventListener(uid, eventCallback));
+      this.listenerQueue.enqueue(
+        new EventListener(uid, eventName, eventCallback)
+      );
     }
     if (callback) {
       callback();
@@ -125,19 +158,6 @@ class Stateless {
       }
     } else {
       throw new Error("Event must not be null and have an ID!");
-    }
-  }
-
-  runQueue() {
-    for (let i = 0; i < this.dispatchQueue.queue.length; i++) {
-      const event = this.dispatchQueue.queue[i];
-      if (this.hasEvent(event.id)) {
-        this.dispatch(event);
-        this.dispatchQueue.queue.splice(i, 1);
-        if (i > 0) {
-          i--;
-        }
-      }
     }
   }
 

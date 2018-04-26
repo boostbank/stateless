@@ -5,7 +5,7 @@ const eventListeners = new HashMap();
 const EventListener = require("./library/EventListener");
 const Listeners = require("./library/Listeners");
 const Queue = require("./library/Queue");
-const WARNING_AMOUNT = 500;
+const WARNING_AMOUNT = 100;
 
 let instance = undefined;
 

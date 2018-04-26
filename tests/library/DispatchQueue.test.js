@@ -11,7 +11,6 @@ describe("DispatchQueue Tests", () => {
     Stateless.dispatch(passingEvent);
     expect(Stateless.hasQueuedDispatches()).toBe(true);
     const callback = event => {
-      console.log("CALLBSCKKDSFLDJSFDS")
       expect(event.id).toBe(passingEvent.id);
       expect(event.payload).toBe(passingEvent.payload);
       thrownEvent = event;

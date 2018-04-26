@@ -5,6 +5,7 @@ const eventListeners = new HashMap();
 const EventListener = require("./library/EventListener");
 const Listeners = require("./library/Listeners");
 const Queue = require("./library/Queue");
+const WARNING_AMOUNT = 500;
 
 let instance = undefined;
 
@@ -62,7 +63,17 @@ class Stateless {
       eventListeners.set(eventName, new Listeners());
       if (!this.dispatchQueue.isEmpty()) {
         runListenerQueue(this.listenerQueue);
+        if (this.listenerQueue.size >= WARNING_AMOUNT) {
+          console.warn(
+            "The listener queue is getting big and may be causing a memory leak. Does you event exist in stateless?"
+          );
+        }
         runDispatchQueue(this.dispatchQueue);
+        if (this.dispatchQueue.size >= WARNING_AMOUNT) {
+          console.warn(
+            "The dispatch queue is getting big and may be causing a memory leak. Does you event exist in stateless?"
+          );
+        }
       }
     }
     if (callback) {

@@ -13,6 +13,10 @@ class Queue {
     }
   }
 
+  size(){
+    return this.queue.length;
+  }
+
   isEmpty() {
     return this.queue.length === 0;
   }

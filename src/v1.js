@@ -61,15 +61,15 @@ class Stateless {
   addEvent(eventName, callback) {
     if (!eventListeners.has(eventName)) {
       eventListeners.set(eventName, new Listeners());
-      if (!this.dispatchQueue.isEmpty()) {
-        runListenerQueue(this.listenerQueue);
-        if (this.listenerQueue.size >= WARNING_AMOUNT) {
+      if (!getInstance().dispatchQueue.isEmpty()) {
+        runListenerQueue(getInstance().listenerQueue);
+        if (getInstance().listenerQueue.size >= WARNING_AMOUNT) {
           console.warn(
             "The listener queue is getting big and may be causing a memory leak. Does you event exist in stateless?"
           );
         }
-        runDispatchQueue(this.dispatchQueue);
-        if (this.dispatchQueue.size >= WARNING_AMOUNT) {
+        runDispatchQueue(getInstance().dispatchQueue);
+        if (getInstance().dispatchQueue.size >= WARNING_AMOUNT) {
           console.warn(
             "The dispatch queue is getting big and may be causing a memory leak. Does you event exist in stateless?"
           );
@@ -132,7 +132,7 @@ class Stateless {
         listeners.addListener(new EventListener(uid, eventName, eventCallback));
       }
     } else {
-      this.listenerQueue.enqueue(
+      getInstance().listenerQueue.enqueue(
         new EventListener(uid, eventName, eventCallback)
       );
     }
@@ -165,7 +165,7 @@ class Stateless {
         const listeners = eventListeners.get(event.id);
         listeners.notify(event);
       } else {
-        this.dispatchQueue.enqueue(event);
+        getInstance().dispatchQueue.enqueue(event);
       }
     } else {
       throw new Error("Event must not be null and have an ID!");
@@ -173,7 +173,7 @@ class Stateless {
   }
 
   hasQueuedDispatches() {
-    return !this.dispatchQueue.isEmpty();
+    return !getInstance().dispatchQueue.isEmpty();
   }
 }
 

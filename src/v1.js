@@ -4,7 +4,7 @@ const HashMap = require("hashmap");
 const eventListeners = new HashMap();
 const EventListener = require("./library/EventListener");
 const Listeners = require("./library/Listeners");
-const DispatchQueue = require("./library/DispatchQueue");
+const Queue = require("./library/Queue");
 
 let instance = undefined;
 
@@ -23,14 +23,15 @@ class Stateless {
    */
 
   constructor() {
-    this.dispatchQueue = new DispatchQueue();
+    this.dispatchQueue = new Queue();
+    this.listenerQueue = new Queue();
   }
 
   addEvent(eventName, callback) {
     if (!eventListeners.has(eventName)) {
       eventListeners.set(eventName, new Listeners());
       if (!this.dispatchQueue.isEmpty()) {
-        this.dispatchQueue.runQueue();
+        this.runQueue();
       }
     }
     if (callback) {
@@ -75,19 +76,34 @@ class Stateless {
     }
   }
 
-  subscribe(eventName, listener, callback) {
+  /**
+   * @function listen Subscribe to an event.
+   * @param {string} eventName
+   * @param {string} uid
+   * @param {function} eventCallback
+   * @param {function} callback
+   */
+  listen(eventName, uid, eventCallback, callback) {
     if (eventListeners.has(eventName)) {
       const listeners = eventListeners.get(eventName);
-      if (!listeners.hasListener(listener.id)) {
-        listeners.addListener(listener);
+      if (!listeners.hasListener(uid)) {
+        listeners.addListener(new EventListener(uid, eventCallback));
       }
+    } else {
+      this.listenerQueue.enqueue(new EventListener(uid, eventCallback));
     }
     if (callback) {
       callback();
     }
   }
 
-  unsubscribe(eventName, listenerId, callback) {
+  /**
+   * @function ignore UnSubscrive to an event.
+   * @param {string} eventName
+   * @param {string} listenerId
+   * @param {string} callback
+   */
+  ignore(eventName, listenerId, callback) {
     if (eventListeners.has(eventName)) {
       const listeners = eventListeners.get(eventName);
       if (listeners.hasListener(listenerId)) {
@@ -112,8 +128,17 @@ class Stateless {
     }
   }
 
-  createListener(id, callback) {
-    return new EventListener(id, callback);
+  runQueue() {
+    for (let i = 0; i < this.dispatchQueue.queue.length; i++) {
+      const event = this.dispatchQueue.queue[i];
+      if (this.hasEvent(event.id)) {
+        this.dispatch(event);
+        this.dispatchQueue.queue.splice(i, 1);
+        if (i > 0) {
+          i--;
+        }
+      }
+    }
   }
 
   hasQueuedDispatches() {

@@ -13,7 +13,7 @@ npm i @boostbank/stateless --save
 ## Object Deconstruction Example
 
 ```javascript
-var {addEvent, listen, dispatch} = require("@boostbank/stateless/lib/stateless");
+const {addEvent, listen, dispatch} = require("@boostbank/stateless/lib/stateless");
 
 const NAME = "componentEvent";
 const componentEvent = () => {
@@ -58,7 +58,7 @@ main();
 
 ```javascript
 // Pure Node.
-var Stateless = require("@boostbank/stateless/lib/stateless");
+const Stateless = require("@boostbank/stateless/lib/stateless");
 
 /**
  * You dispatch events much like actions in redux but they do not directly modify state.

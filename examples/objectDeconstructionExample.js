@@ -1,4 +1,5 @@
-var {addEvent, listen, dispatch} = require("./../src/stateless");
+// Replace with -> const {addEvent, listen, dispatch} = require("@boostbank/stateless/lib/stateless") when you use it.
+const {addEvent, listen, dispatch} = require("./../src/stateless");
 
 const NAME = "componentEvent";
 const componentEvent = () => {

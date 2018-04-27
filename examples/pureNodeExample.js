@@ -1,4 +1,5 @@
-var Stateless = require("./../src/stateless");
+// Replace with -> var Statless = require("@boostbank/stateless/lib/stateless") when you use it.
+const Stateless = require("./../src/stateless");
 
 //
 /**

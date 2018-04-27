@@ -1,7 +1,3 @@
-/**
- * @class EventListener
- */
-
 class Queue {
   constructor() {
     this.queue = [];

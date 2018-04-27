@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest --env=jsdom --coverage",
     "test:no-coverage": "jest --env=jsdom",
-    "build": "babel src/ -d lib",
+    "docs": "cross-env jsdoc src -r -d docs && jsdoc src -r -d lib/docs",
+    "build": "cross-env npm run docs && babel src/ -d lib",
     "prepare": "npm run build"
   },
   "files": [
@@ -35,6 +36,7 @@
     "babel-eslint": "8.2.2",
     "babel-preset-es2015": "6.24.1",
     "cross-env": "^5.1.4",
-    "gulp": "^3.9.1"
+    "gulp": "^3.9.1",
+    "jsdoc": "^3.5.5"
   }
 }

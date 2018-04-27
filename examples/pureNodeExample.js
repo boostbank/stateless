@@ -7,6 +7,7 @@ const Stateless = require("./../src/stateless");
  * The main difference between an action in redux and event in statless is that you return an object.
  * The required property on an event is the id the rest is up to you.
  */
+// Can be put in a different file and imported.
 const NAME = "componentEvent";
 const componentEvent = () => {
   return {

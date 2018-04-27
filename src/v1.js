@@ -65,13 +65,13 @@ class Stateless {
         runListenerQueue(getInstance().listenerQueue);
         if (getInstance().listenerQueue.size >= WARNING_AMOUNT) {
           console.warn(
-            "The listener queue is getting big and may be causing a memory leak. Does you event exist in stateless?"
+            "The listener queue is getting big and may be causing a memory leak. Does your event exist in stateless?"
           );
         }
         runDispatchQueue(getInstance().dispatchQueue);
         if (getInstance().dispatchQueue.size >= WARNING_AMOUNT) {
           console.warn(
-            "The dispatch queue is getting big and may be causing a memory leak. Does you event exist in stateless?"
+            "The dispatch queue is getting big and may be causing a memory leak. Does your event exist in stateless?"
           );
         }
       }

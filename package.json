@@ -9,17 +9,12 @@
     "build": "babel src/ -d lib",
     "prepare": "npm run build"
   },
-  "files": [
-    "lib/*"
-  ],
+  "files": ["lib/*"],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/boostbank/stateless.git"
   },
-  "keywords": [
-    "boostbank",
-    "stateless"
-  ],
+  "keywords": ["boostbank", "stateless"],
   "author": "boostbank",
   "license": "ISC",
   "bugs": {
@@ -27,13 +22,14 @@
   },
   "homepage": "https://github.com/boostbank/stateless#readme",
   "dependencies": {
+    "hashmap": "^2.3.0"
+  },
+  "devDependencies": {
     "babel-cli": "6.26.0",
     "babel-core": "6.26.0",
     "babel-eslint": "8.2.2",
     "babel-preset-es2015": "6.24.1",
     "cross-env": "^5.1.4",
-    "gulp": "^3.9.1",
-    "hashmap": "^2.3.0",
-    "jest": "^22.4.3"
+    "gulp": "^3.9.1"
   }
 }

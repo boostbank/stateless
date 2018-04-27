@@ -10,16 +10,15 @@
 npm i @boostbank/stateless --save
 ```
 
-## Code Samples
+## Pure Node Code Samples
 
 ```javascript
 // Pure Node.
 var Stateless = require("@boostbank/stateless/lib/stateless");
 
-//
 /**
  * You dispatch events much like actions in redux but they do not directly modify state.
- * The main difference between an action in redux and event in statless is that you return an object.
+ * The main difference between an action in redux and an event is you make a function that returns an object instead.
  * The required property on an event is the id the rest is up to you.
  */
 const NAME = "componentEvent";

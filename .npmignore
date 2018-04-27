@@ -6,3 +6,4 @@ package-lock.json
 src
 .babelrc
 tests
+docs

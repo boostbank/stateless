@@ -9,12 +9,17 @@
     "build": "babel src/ -d lib",
     "prepare": "npm run build"
   },
-  "files": ["lib/*"],
+  "files": [
+    "lib/*"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/boostbank/stateless.git"
   },
-  "keywords": ["boostbank", "stateless"],
+  "keywords": [
+    "boostbank",
+    "stateless"
+  ],
   "author": "boostbank",
   "license": "ISC",
   "bugs": {

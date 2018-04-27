@@ -1,11 +1,5 @@
-var Stateless = require("./../src/stateless");
+var {addEvent, listen, dispatch} = require("./../src/stateless");
 
-//
-/**
- * You dispatch events much like actions in redux but they do not directly modify state.
- * The main difference between an action in redux and event in statless is that you return an object.
- * The required property on an event is the id the rest is up to you.
- */
 const NAME = "componentEvent";
 const componentEvent = () => {
   return {
@@ -18,22 +12,22 @@ const componentEvent = () => {
 
 function main() {
   // You have to add an event to stateless for it to listen for it.
-  Stateless.addEvent(NAME);
+  addEvent(NAME);
 
   // Listen to an event passing the name of the event you want to listen to.
   // Then an unique identifier for the listener.
   // Then a function with 1 parameter for the event.
   // Its recommended to use a UUID for the uid.
-  Stateless.listen(NAME, "12345", eventCallback);
+  listen(NAME, "12345", eventCallback);
 
   // Another Example.
-  Stateless.listen(NAME, "123456", event => {
+  listen(NAME, "123456", event => {
     console.log("Inline Event");
     console.log(event.payload);
   });
 
   // Dispatching Events
-  Stateless.dispatch(componentEvent());
+  dispatch(componentEvent());
 }
 
 const eventCallback = event => {

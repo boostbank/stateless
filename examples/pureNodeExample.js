@@ -1,4 +1,4 @@
-var Stateless = require("./src/stateless");
+var Stateless = require("@boostbank/stateless/lib/stateless");
 
 //
 /**

@@ -47,17 +47,16 @@ const runListenerQueue = listenerQueue => {
 };
 
 class Stateless {
-  /**
-   * @function addEvent Adds an event to be listened to.
-   * @param {string} eventName The event name.
-   * @param {function} callback The callback function if async.
-   */
-
   constructor() {
     this.dispatchQueue = new Queue();
     this.listenerQueue = new Queue();
   }
 
+  /**
+   * @function addEvent Adds an event to be listened to.
+   * @param {string} eventName The event name.
+   * @param {function} callback The callback function if async.
+   */
   addEvent(eventName, callback) {
     if (!eventListeners.has(eventName)) {
       eventListeners.set(eventName, new Listeners());
@@ -159,6 +158,10 @@ class Stateless {
     }
   }
 
+  /**
+   * @function dispatch Dispatches an event.
+   * @param {object} event 
+   */
   dispatch(event) {
     if (event && event.id) {
       if (eventListeners.has(event.id)) {
@@ -172,6 +175,9 @@ class Stateless {
     }
   }
 
+  /**
+   * @function hasQueuedDispatches Determines if you have dispatched events in a queue because you haven't added the event to stateless.
+   */
   hasQueuedDispatches() {
     return !getInstance().dispatchQueue.isEmpty();
   }

@@ -1,4 +1,4 @@
-var Stateless = require("./src/statless");
+var Stateless = require("./src/stateless");
 
 //
 /**
@@ -11,14 +11,34 @@ const componentEvent = () => {
   return {
     id: NAME,
     payload: {
-      worksWith: ["Node.js", "React", "Other Javascript Frameworks"]
+      worksWith: ["Node.js", "React", "Chrome", "Firefox", "Edge", "IE 11", "And many more!"]
     }
   };
 };
 
+function main() {
+  // You have to add an event to stateless for it to listen for it.
+  Stateless.addEvent(NAME);
 
-function main(){
+  // Listen to an event passing the name of the event you want to listen to.
+  // Then an unique identifier for the listener.
+  // Then a function with 1 parameter for the event.
+  // Its recommended to use a UUID for the uid.
+  Stateless.listen(NAME, "12345", eventCallback);
 
+  // Another Example.
+  Stateless.listen(NAME, "123456", event => {
+    console.log("Inline Event");
+    console.log(event.payload);
+  });
 
+  // Dispatching Events
+  Stateless.dispatch(componentEvent());
 }
 
+const eventCallback = event => {
+  console.log("Component Event");
+  console.log(event.payload);
+};
+
+main();

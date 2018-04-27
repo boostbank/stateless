@@ -1,0 +1,1 @@
+var Stateless = require('./src/v1');

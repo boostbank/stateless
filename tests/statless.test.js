@@ -1,4 +1,4 @@
-const Stateless = require("./../src/v1");
+const Stateless = require("./../src/stateless");
 
 describe("Stateless v1 Tests", () => {
   beforeEach(() => {
@@ -21,7 +21,7 @@ describe("Stateless v1 Tests", () => {
   it("Contains the same events on 2 different instances.", () => {
     Stateless.addEvent("Test Event");
     expect(Stateless.hasEvent("Test Event")).toBe(true);
-    const newInstance = require("./../src/v1");
+    const newInstance = require("./../src/stateless");
     expect(newInstance.hasEvent("Test Event")).toBe(true);
   });
 

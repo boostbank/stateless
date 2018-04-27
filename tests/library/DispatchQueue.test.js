@@ -1,4 +1,4 @@
-const Stateless = require("./../../src/v1");
+const Stateless = require("./../../src/stateless");
 
 describe("DispatchQueue Tests", () => {
   it("Throws event later", () => {

@@ -6,8 +6,8 @@
   "scripts": {
     "test": "jest --env=jsdom --coverage",
     "test:no-coverage": "jest --env=jsdom",
-    "docs": "cross-env jsdoc src -r -d docs && jsdoc src -r -d lib/docs",
-    "build": "cross-env npm run docs && babel src/ -d lib",
+    "docs": "jsdoc src -r -d lib/docs",
+    "build": "npm run docs && babel src/ -d lib",
     "prepare": "npm run build"
   },
   "files": [

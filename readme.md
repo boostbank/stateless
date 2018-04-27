@@ -10,6 +10,8 @@
 npm i @boostbank/stateless --save
 ```
 
+## API
+
 ## Pure Node Code Samples
 
 ```javascript
@@ -26,7 +28,7 @@ const componentEvent = () => {
   return {
     id: NAME,
     payload: {
-      worksWith: ["Node.js", "React", "Chrome", "Firefox", "Edge", "IE 11", "And many more!"]
+      worksWith: ["Node.js", "React", "Chrome", "Firefox", "Edge", "Opera", "IE 11", "And many more!"]
     }
   };
 };

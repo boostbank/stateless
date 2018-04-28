@@ -1,6 +1,6 @@
 {
   "name": "@boostbank/stateless",
-  "version": "0.1.42",
+  "version": "0.1.43",
   "description": "Stateless Event System for JS",
   "main": "lib/v1.js",
   "scripts": {

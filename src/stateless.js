@@ -78,7 +78,7 @@ class Stateless {
         }
       }
     }
-    if (callback) {
+    if (callback && typeof callback === "function") {
       callback();
     }
   }
@@ -89,7 +89,7 @@ class Stateless {
    * @param {function} callback Optional async callback.
    */
   hasEvent(eventName, callback) {
-    if (callback) {
+    if (callback && typeof callback === "function") {
       callback(eventListeners.has(eventName));
     }
     return eventListeners.has(eventName);
@@ -104,7 +104,7 @@ class Stateless {
     if (eventListeners.has(eventName)) {
       eventListeners.remove(eventName);
     }
-    if (callback) {
+    if (callback && typeof callback === "function") {
       callback();
     }
   }
@@ -169,7 +169,6 @@ class Stateless {
    * @param {function} callback Optional async callback.
    */
   addReaction(eventName, uid, reaction, callback) {
-    console.log(uid && typeof uid === "string");
     if (getInstance().hasEvent(eventName)) {
       if (uid && typeof uid === "string") {
         if (reaction && typeof reaction === "function") {

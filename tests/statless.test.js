@@ -120,4 +120,26 @@ describe("Stateless v1 Tests", () => {
     Stateless.dispatch(event);
     expect(throwEvent).toBe(undefined);
   });
+  it("Reaction Test", ()=>{
+    const reaction = event =>{
+      expect(event.id).toBe("test");
+    };
+    Stateless.addReaction("test","12345", reaction);
+    Stateless.listen("test", "123", event =>{
+      expect(event.id).toBe("test");
+    });
+    Stateless.dispatch({id: "test"});
+    Stateless.addEvent("test");
+  });
+  it("Reaction Test", ()=>{
+    const reaction = event =>{
+      expect(event.id).toBe("test");
+    };
+    Stateless.addEvent("test");
+    Stateless.addReaction("test","12345", reaction);
+    Stateless.listen("test", "123", event =>{
+      expect(event.id).toBe("test");
+    });
+    Stateless.dispatch({id: "test"});
+  });
 });

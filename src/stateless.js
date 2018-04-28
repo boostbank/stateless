@@ -169,12 +169,17 @@ class Stateless {
    * @param {function} callback Optional async callback.
    */
   addReaction(eventName, uid, reaction, callback) {
+    console.log(uid && typeof uid === "string");
     if (getInstance().hasEvent(eventName)) {
       if (uid && typeof uid === "string") {
         if (reaction && typeof reaction === "function") {
           getInstance().listen(eventName, uid, reaction, callback);
         }
       }
+    } else {
+      getInstance().listenerQueue.enqueue(
+        new EventListener(uid, eventName, reaction)
+      );
     }
     if (callback && typeof callback === "function") {
       callback();

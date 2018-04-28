@@ -1,12 +1,12 @@
 {
   "name": "@boostbank/stateless",
-  "version": "0.1.41",
+  "version": "0.1.42",
   "description": "Stateless Event System for JS",
   "main": "lib/v1.js",
   "scripts": {
     "test": "jest --env=jsdom --coverage",
     "test:no-coverage": "jest --env=jsdom",
-    "docs": "jsdoc src -r -d lib/docs",
+    "docs": "jsdoc src -r -d lib/docs && jsdoc src -r -d docs",
     "build": "npm run docs && babel src/ -d lib",
     "prepare": "npm run build"
   },

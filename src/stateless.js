@@ -115,7 +115,7 @@ class Stateless {
    */
   clear(callback) {
     eventListeners.clear();
-    if (callback) {
+    if (callback && typeof callback === "function") {
       callback();
     }
   }
@@ -138,7 +138,7 @@ class Stateless {
         new EventListener(uid, eventName, eventCallback)
       );
     }
-    if (callback) {
+    if (callback && typeof callback === "function") {
       callback();
     }
   }
@@ -156,7 +156,27 @@ class Stateless {
         listeners.removeListener(listenerId);
       }
     }
-    if (callback) {
+    if (callback && typeof callback === "function") {
+      callback();
+    }
+  }
+
+  /**
+   * @function reaction
+   * @param {string} eventName The event to listen to.
+   * @param {string} uid Unique identifier for reaction.
+   * @param {function} reaction The reaction callback.
+   * @param {function} callback Optional async callback.
+   */
+  addReaction(eventName, uid, reaction, callback) {
+    if (getInstance().hasEvent(eventName)) {
+      if (uid && typeof uid === "string") {
+        if (reaction && typeof reaction === "function") {
+          getInstance().listen(eventName, uid, reaction, callback);
+        }
+      }
+    }
+    if (callback && typeof callback === "function") {
       callback();
     }
   }

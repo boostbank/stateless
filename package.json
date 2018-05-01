@@ -1,6 +1,6 @@
 {
   "name": "@boostbank/stateless",
-  "version": "0.1.45",
+  "version": "0.1.46",
   "description": "Stateless Event System for JS",
   "main": "lib/stateless.js",
   "scripts": {
@@ -22,7 +22,7 @@
     "stateless"
   ],
   "author": "boostbank",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/boostbank/stateless/issues"
   },

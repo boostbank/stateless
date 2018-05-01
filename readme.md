@@ -2,9 +2,7 @@
 
 ## Introduction
 
-> Stateless is a decoupled eventing system that contains no state.
-
-> The goal of Stateless is to allow for actions/events to happen in a JavaScript application without forcing coupling to a global state.
+> The goal of stateless is to allow for actions/events to happen in a JavaScript application without forcing coupling to a global state.
 
 ## Installation
 

@@ -4,6 +4,8 @@
 
 > Stateless is a decoupled eventing system that contains no state.
 
+> The goal of Stateless is to allow for actions/events to happen in a JavaScript application without forcing coupling to a global state.
+
 ## Installation
 
 ```sh
@@ -17,7 +19,7 @@ npm i @boostbank/stateless --save
 ## Object Deconstruction Example
 
 ```javascript
-const {addEvent, listen, dispatch} = require("@boostbank/stateless/lib/stateless");
+const {addEvent, listen, dispatch} = require("@boostbank/stateless");
 
 const NAME = "componentEvent";
 const componentEvent = () => {
@@ -62,7 +64,7 @@ main();
 
 ```javascript
 // Pure Node.
-const Stateless = require("@boostbank/stateless/lib/stateless");
+const Stateless = require("@boostbank/stateless");
 
 /**
  * You dispatch events much like actions in redux but they do not directly modify state.
